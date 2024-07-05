@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<div th:fragment="manager-detailbar" class="detailbar-wrapper" id="detailbarWrapper">
+    <form action="" method="post" style="display: flex; flex-direction: column; height: 100%;">
+        <div class="detailbar-title">
+            <i class="fa-regular fa-window-restore"></i>
+            <span>상세 화면</span>
+            <i class="fa-solid fa-arrow-right" id="toggleIcon"></i>
+        </div>
+        <div class="detailbar-content">
+            <!-- 선택한 메뉴의 상세정보를 replace 예정 -->
+            <table class="detailbar-table">
+                <tr>
+                    <td class="info-title">업체코드</td>
+                    <td class="info-content">
+                        <input type="text" value="테스트">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="info-title">인입분기</td>
+                    <td class="info-content">
+                        <select name="" id="">
+                            <option value="">1</option>
+                            <option value="">2</option>
+                            <option value="">3</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="">
+                    <td class="info-title">부가서비스</td>
+                    <td class="info-content">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="checkbox1" name="subservice" value="1">
+                            <label for="checkbox1">지능형 IVR</label>
+                        </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="checkbox2" name="subservice" value="2">
+                            <label for="checkbox2">대표번호 문자</label>
+                        </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="checkbox3" name="subservice" value="3">
+                            <label for="checkbox3">부분녹취</label>
+                        </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="checkbox4" name="subservice" value="4">
+                            <label for="checkbox4">클릭다이얼</label>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="detailbar-btn">
+            <button>신규</button>
+            <button>저장</button>
+            <button>삭제</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
