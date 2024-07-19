@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIP.js with WebRTC</title>
+    <script th:src="@{/js/sip-0.21.2.js}"></script>
+</head>
+<body>
+<h1>WebSocket을 사용한 SIP.js</h1>
+
+<form id="loginForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br>
+    <button type="submit">Login</button>
+</form>
+
+<div id="callControls" style="display:none;">
+    <button id="callButton">Call</button>
+    <button id="hangupButton" style="display:none;">Hang Up</button>
+</div>
+
+<script>
+    let userAgent;
+    let session;
+
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        userAgent = new SIP.UserAgent({
+            uri: 'sip:' + username + '@www.praymyk.co.kr',
+            transportOptions: {
+                server: 'wss://www.praymyk.co.kr:8089/ws'
+            },
+            authorizationUsername: username,
+            authorizationPassword: password,
+            autoStart: true,
+            autoRegister: true,
+            log: {
+                level: 'debug'
+            }
+        });
+
+        userAgent.start().then(() => {
+            console.log('User Agent started');
+            document.getElementById('callControls').style.display = 'block';
+        }).catch((error) => {
+            console.error('User Agent failed to start', error);
+        });
+
+        userAgent.on('invite', (incomingSession) => {
+            session = incomingSession;
+            session.accept();
+            session.on('terminated', () => {
+                document.getElementById('hangupButton').style.display = 'none';
+                document.getElementById('callButton').style.display = 'block';
+            });
+            document.getElementById('callButton').style.display = 'none';
+            document.getElementById('hangupButton').style.display = 'block';
+        });
+    });
+
+    document.getElementById('callButton').addEventListener('click', function() {
+        const target = prompt("Enter the SIP address to call:");
+        session = userAgent.invite('sip:' + target + '@www.praymyk.co.kr');
+        session.on('terminated', () => {
+            document.getElementById('hangupButton').style.display = 'none';
+            document.getElementById('callButton').style.display = 'block';
+        });
+        document.getElementById('callButton').style.display = 'none';
+        document.getElementById('hangupButton').style.display = 'block';
+    });
+
+    document.getElementById('hangupButton').addEventListener('click', function() {
+        if (session) {
+            session.terminate();
+        }
+    });
+</script>
+</body>
+</html>

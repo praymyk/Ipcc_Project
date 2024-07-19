@@ -21,11 +21,17 @@ configurations {
 
 repositories {
 	mavenCentral()
+	// 추가적인 저장소가 필요할 경우 여기에 추가
 }
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.asteriskjava:asterisk-java:3.39.0' // Asterisk Java 라이브러리
+	implementation 'org.apache.httpcomponents:httpclient:4.5.13'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.mysql:mysql-connector-j'
