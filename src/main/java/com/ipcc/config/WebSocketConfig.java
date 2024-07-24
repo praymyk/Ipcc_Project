@@ -1,4 +1,4 @@
-package com.ipcc.common.config;
+package com.ipcc.config;
 
 import com.ipcc.common.controller.WebSocketController;
 import org.springframework.context.annotation.Configuration;
