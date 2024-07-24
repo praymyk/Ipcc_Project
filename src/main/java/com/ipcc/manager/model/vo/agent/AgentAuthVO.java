@@ -3,10 +3,12 @@ package com.ipcc.manager.model.vo.agent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 // 상담원 인증 정보를 담는 VO 클래스
 public class AgentAuthVO {
     private String agentId;

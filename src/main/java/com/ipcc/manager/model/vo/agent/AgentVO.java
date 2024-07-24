@@ -1,14 +1,12 @@
 package com.ipcc.manager.model.vo.agent;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 // 상담원 정보를 담는 VO 클래스
 public class AgentVO {
     private String agentId;

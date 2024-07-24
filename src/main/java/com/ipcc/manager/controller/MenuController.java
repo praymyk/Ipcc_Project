@@ -35,7 +35,6 @@ public class MenuController {
     @RequestMapping("/goAgent")
     public String selectMenu() {
         // 메뉴 선택
-        System.out.println("들어옴?");
         return "redirect:/manager/agent";
     }
 
